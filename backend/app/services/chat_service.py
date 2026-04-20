@@ -1,6 +1,7 @@
 from groq import Groq
 from app.config import settings
 from typing import List, Dict
+import asyncio
 
 class ChatService:
     def __init__(self):
@@ -11,7 +12,6 @@ class ChatService:
         """
         Generate a context-aware chat response using project info and conversation history.
         """
-        # Build system prompt with full project context
         rec = project_context.get("recommendation_data", {})
         languages = ", ".join(rec.get("programming_languages", []))
         frameworks = ", ".join(rec.get("frameworks", []))
@@ -34,14 +34,18 @@ Setup steps they are following:
 Help them with specific, practical answers based on this context.
 Keep answers concise and beginner-friendly if needed."""
 
-        # Build message list: system + history + new message
         messages = [{"role": "system", "content": system_prompt}]
-        for msg in history[-6:]:  # last 6 messages for context window
+        for msg in history[-6:]:
             messages.append({"role": msg["role"], "content": msg["content"]})
         messages.append({"role": "user", "content": user_message})
 
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=messages
+        # Run sync Groq client in thread to avoid blocking async event loop
+        loop = asyncio.get_event_loop()
+        response = await loop.run_in_executor(
+            None,
+            lambda: self.client.chat.completions.create(
+                model=self.model,
+                messages=messages
+            )
         )
         return response.choices[0].message.content

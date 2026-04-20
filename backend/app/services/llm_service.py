@@ -3,6 +3,7 @@ from app.config import settings
 from typing import Dict, Any
 import json
 import re
+import asyncio
 
 class LLMService:
     def __init__(self):
@@ -38,18 +39,22 @@ class LLMService:
 
     async def generate_response(self, prompt: str) -> str:
         try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {
-                        "role": "system",
-                        "content": "You are an AI assistant for UAlbany Makerspace. Help students with project recommendations."
-                    },
-                    {
-                        "role": "user",
-                        "content": prompt
-                    }
-                ]
+            loop = asyncio.get_event_loop()
+            response = await loop.run_in_executor(
+                None,
+                lambda: self.client.chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": "You are an AI assistant for UAlbany Makerspace. Help students with project recommendations."
+                        },
+                        {
+                            "role": "user",
+                            "content": prompt
+                        }
+                    ]
+                )
             )
             return response.choices[0].message.content
         except Exception as e:
