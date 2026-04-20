@@ -93,7 +93,7 @@ function App() {
 
   // Load recent projects for templates section
   useState(() => {
-    fetch("/api/projects?limit=6")
+    fetch(`${BACKEND_BASE_URL}/api/projects?limit=6`)
       .then(r => r.json())
       .then(data => setRecentProjects(data.projects || []))
       .catch(() => {});
@@ -180,7 +180,7 @@ function App() {
         content: `Hi! I know your project — "${form.title || form.description}". Ask me anything if you get stuck on a step.`
       }]);
       // Refresh recent projects
-      fetch("/api/projects?limit=6").then(r => r.json()).then(d => setRecentProjects(d.projects || [])).catch(() => {});
+      fetch(`${BACKEND_BASE_URL}/api/projects?limit=6`).then(r => r.json()).then(d => setRecentProjects(d.projects || [])).catch(() => {});
       setAssistantResult({
         summary: data.summary || data.recommendation || data.project_plan || "Recommendation received from backend.",
         difficulty: data.difficulty || data.estimated_difficulty || "Not specified",
@@ -511,7 +511,7 @@ function App() {
                       setChatMessages(prev => [...prev, {role:"user", content:msg}]);
                       setChatLoading(true);
                       try {
-                        const res = await fetch("/api/chat", {
+                        const res = await fetch(`${BACKEND_BASE_URL}/api/chat`, {
                           method:"POST",
                           headers:{"Content-Type":"application/json"},
                           body: JSON.stringify({project_id: projectId, message: msg})
