@@ -1,0 +1,46 @@
+{
+  "tools": [
+    {
+      "name": "Python",
+      "category": "language",
+      "version": "3.11",
+      "available": true,
+      "description": "General-purpose programming language"
+    },
+    {
+      "name": "PyTorch",
+      "category": "library",
+      "version": "2.1.0",
+      "available": true,
+      "description": "Deep learning framework"
+    },
+    {
+      "name": "TensorFlow",
+      "category": "library",
+      "version": "2.15.0",
+      "available": true,
+      "description": "Machine learning framework"
+    },
+    {
+      "name": "OpenCV",
+      "category": "library",
+      "version": "4.8.0",
+      "available": true,
+      "description": "Computer vision library"
+    },
+    {
+      "name": "React",
+      "category": "framework",
+      "version": "18.2.0",
+      "available": true,
+      "description": "UI library for web development"
+    },
+    {
+      "name": "Node.js",
+      "category": "runtime",
+      "version": "20.0.0",
+      "available": true,
+      "description": "JavaScript runtime"
+    }
+  ]
+}

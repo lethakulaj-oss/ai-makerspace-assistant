@@ -1,0 +1,19 @@
+{
+  "policies": [
+    {
+      "category": "hardware_access",
+      "rule": "GPU workstations require faculty approval for extended use",
+      "details": "Students must submit a project proposal for GPU access beyond 4 hours"
+    },
+    {
+      "category": "software_installation",
+      "rule": "New software requires installation request",
+      "details": "Submit requests through the system. Faculty reviews weekly"
+    },
+    {
+      "category": "project_storage",
+      "rule": "Projects stored for 1 semester",
+      "details": "Back up your work regularly. Storage cleaned at semester end"
+    }
+  ]
+}

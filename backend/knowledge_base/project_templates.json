@@ -1,0 +1,28 @@
+{
+  "templates": [
+    {
+      "name": "Machine Learning Project",
+      "description": "Standard ML project setup",
+      "recommended_tools": ["Python", "PyTorch", "NumPy", "Pandas", "Jupyter"],
+      "setup_steps": [
+        "Install Python 3.11",
+        "Create virtual environment",
+        "Install ML libraries",
+        "Set up Jupyter notebook",
+        "Prepare dataset"
+      ]
+    },
+    {
+      "name": "Web Application",
+      "description": "Full-stack web app",
+      "recommended_tools": ["React", "Node.js", "Express", "PostgreSQL"],
+      "setup_steps": [
+        "Initialize Node.js project",
+        "Set up React frontend",
+        "Create Express backend",
+        "Configure database",
+        "Connect frontend to backend"
+      ]
+    }
+  ]
+}
